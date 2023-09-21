@@ -1,0 +1,74 @@
+
+<!-- This child doc will, unless otherwise specified, -->
+<!-- inherit all of the formatting of the parent qmd -->
+
+<!-- Note that the double curly brackets {{ }} can be used to inherit content from the global environment -->
+
+This report compares the distribution and relative abundance of `r length(spp)` snailfish species (specifically, `r paste(spp, collapse = ", ")`; @fig-snailfish) with maps from the `r report_year` in the eastern Bering sea shelf bottom trawl survey. Survey results reported herein include estimates of catch-per-unit-effort for most snailfishes and geographic distributions (@fig-map-all-spp-{{report_year}}); @2021NEBS2022; @2018EBS2022; @2019NEBS2022; @2022NEBS2022). Data is publicly available from the Fisheries One Stop Shop [@FOSSAFSCData]. 
+
+```{r}
+#| label: fig-snailfish
+#| fig-cap: "A photo of variegated snailfish. "
+
+knitr::include_graphics("https://raw.githubusercontent.com/afsc-gap-products/gap_bs_data_report/main/img/variegated-snailfish.png")
+```
+
+<!-- !expr allows you to use an expression in the captions -->
+
+```{r}
+#| label: fig-map-all-spp-{{report_year}}
+#| fig-cap: !expr paste0("Map of different snailfish species distributions in ", report_year, ". ")
+
+reg_dat <- akgfmaps::get_base_layers(
+  select.region = "bs.south", 
+  set.crs = "EPSG:3338") 
+
+pp <- ggplot2::ggplot() +
+    ggplot2::geom_sf(
+      data = dat00, 
+      mapping = aes(color = common_name), 
+      show.legend = TRUE,
+      size = 3) +
+    ggplot2::geom_sf(
+      data = reg_dat$akland,
+            color = NA,
+            fill = "grey50")  +
+    ggplot2::geom_sf(
+      data = reg_dat$graticule,
+            color = "grey80",
+            alpha = 0.2) +
+    ggplot2::scale_y_continuous(
+      name = "",
+      limits = reg_dat$plot.boundary$y, 
+      breaks = reg_dat$lat.breaks) +
+    ggplot2::scale_x_continuous(
+      name = "",
+      limits = reg_dat$plot.boundary$x, 
+      breaks = reg_dat$lon.breaks) +
+    ggplot2::geom_sf(
+      data = reg_dat$survey.area,
+      mapping = aes(color = SURVEY,
+                    geometry = geometry),
+      fill = "transparent",
+      size = 1,
+      show.legend = FALSE) +
+    # ggplot2::guides(fill=FALSE) + 
+    ggplot2::theme( 
+      panel.background = element_rect(fill = "white", 
+                                      colour = NA), 
+      panel.border = element_rect(fill = NA, 
+                                  colour = "grey20"), 
+      axis.text = element_text(size = 8), 
+      strip.background = element_blank(), 
+      strip.text = element_text(size = 10, face = "bold"), 
+      legend.text = element_text(size = 9),
+      legend.background = element_rect(colour = "transparent", 
+                                       fill = "transparent"),
+      legend.key = element_rect(colour = "transparent", 
+                                fill = "transparent")) +
+  ggplot2::ggtitle(paste0("Snailfish in ", params$report_year))
+
+pp
+
+```
+

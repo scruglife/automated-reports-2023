@@ -1,0 +1,93 @@
+
+<!-- This child doc will, unless otherwise specified, -->
+<!-- inherit all of the formatting of the parent qmd -->
+
+<!-- Note that the double curly brackets {{ }} can be used to inherit content from the global environment -->
+
+```{r loop-{{i}}}
+spp1 <- unique(dat0$common_name)[{{i}}]
+dat <- dat0 %>% 
+  dplyr::filter(common_name == spp1)
+```
+
+## **`r paste0(spp1, " *(", dat$scientific_name[1], ")*")`**
+
+The geographic distribution of `r spp1` (@fig-map-{{report_year}}-{{i}}), and the raw data that went into that map (@tbl-raw-{{report_year}}-{{i}}). 
+
+```{r, fig.cap=paste0("Map of ", spp1, " distribution in ", report_year, ". ")}
+#| label: fig-map-{{report_year}}-{{i}}
+
+reg_dat <- akgfmaps::get_base_layers(
+  select.region = "bs.south", 
+  set.crs = "EPSG:3338") 
+
+p <- ggplot() +
+    ggplot2::geom_sf(
+      data = dat00[dat00$common_name == spp1,],
+      mapping = aes(size = cpue_kgkm2), 
+      show.legend = FALSE,
+      size = 3, 
+      color = "green") +
+    ggplot2::geom_sf(
+      data = reg_dat$akland,
+            color = NA,
+            fill = "grey50")  +
+    ggplot2::geom_sf(
+      data = reg_dat$graticule,
+            color = "grey80",
+            alpha = 0.2) +
+    ggplot2::scale_y_continuous(
+      name = "",
+      limits = reg_dat$plot.boundary$y, 
+      breaks = reg_dat$lat.breaks) +
+    ggplot2::scale_x_continuous(
+      name = "",
+      limits = reg_dat$plot.boundary$x, 
+      breaks = reg_dat$lon.breaks) +
+    ggplot2::geom_sf(
+      data = reg_dat$survey.area,
+      mapping = aes(color = SURVEY,
+                    geometry = geometry),
+      fill = "transparent",
+      size = 1,
+      show.legend = FALSE) +
+    theme( 
+      panel.background = element_rect(fill = "white", 
+                                      colour = NA), 
+      panel.border = element_rect(fill = NA, 
+                                  colour = "grey20"), 
+      axis.text = element_text(size = 8), 
+      strip.background = element_blank(), 
+      strip.text = element_text(size = 10, face = "bold"), 
+      legend.text = element_text(size = 9),
+      legend.background = element_rect(colour = "transparent", 
+                                       fill = "transparent"),
+      legend.key = element_rect(colour = "transparent", 
+                                fill = "transparent"),
+      legend.position = "bottom", 
+      legend.box = "horizontal") +
+  ggplot2::ggtitle(paste0(spp1, " in ", report_year))
+
+p
+
+```
+
+
+```{r}
+#| label: tbl-raw-{{report_year}}-{{i}}
+#| tbl-cap: !expr paste0("Table of ", spp1," catch-per-unit-effort in ", report_year, ". ")
+
+tab <- dat %>%  # subset data to the row of interest
+  dplyr::select(stratum, station, vessel_name, date_time, 
+                cpue_kgkm2, cpue_nokm2, weight_kg, count, 
+                bottom_temperature_c, surface_temperature_c, depth_m)  %>% 
+  dplyr::mutate( 
+    dplyr::across(c("cpue_kgkm2", "cpue_nokm2", "weight_kg", "count", 
+          "bottom_temperature_c", "surface_temperature_c", "depth_m"), as.numeric) , 
+    dplyr::across(is.numeric, round, digits = 2), 
+    stratum = as.character(as.numeric(stratum))) %>% 
+  gt::gt()
+
+tab
+```
+

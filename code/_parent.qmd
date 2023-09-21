@@ -1,0 +1,95 @@
+---
+title: "`r paste0('Snailfish found in the Eastern Bering Sea in ', params$report_year)`"
+subtitle: "`r paste0('DRAFT: ', format(Sys.time(), '%B %d, %Y'))`"
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa-no-ampersand.csl"
+bibliography: "https://raw.githubusercontent.com/afsc-gap-products/citations/main/cite/bibliography.bib"
+link-citations: true
+format: 
+  html: default
+  docx:
+    reference-doc: "../code4/styles_reference.docx" 
+  pdf: 
+    geometry:
+      - top=0.75in
+      - right=0.75in
+      - bottom=0.75in
+      - left=0.75in
+      - heightrounded
+    number-sections: true
+    toc: false
+execute:
+  warning: false
+  echo: false
+  message: false
+  error: false
+params: 
+  report_year: 2000
+---
+
+```{r load-packages}
+
+report_year <- params$report_year
+
+# Install libraries ------------------------------------------------------------
+PKG <- c(
+  "httr", 
+  "jsonlite", 
+  "gt", 
+  "ggplot2", 
+  "sf", 
+  "dplyr",
+  "magrittr", 
+  "akgfmaps" # devtools::install_github("sean-rohan-noaa/akgfmaps", build_vignettes = TRUE)
+)
+for (p in PKG) { # this loops through each package, 
+  if(!require(p,character.only = TRUE)) {  # checks to see if you have the package installed
+    install.packages(p, verbose = FALSE) # installs the package if it is not installed
+    require(p,character.only = TRUE)} # and loads the package library
+}
+```
+
+```{r load-data}
+# Download data ----------------------------------------------------------------
+
+# pull data from FOSS API for AFSC bottom trawl survey data. 
+api_link <- "https://apps-st.fisheries.noaa.gov/ods/foss/afsc_groundfish_survey/" # link to the API
+# pull top 10000 lines
+# res <- httr::GET(url = paste0(api_link, '?offset=0&limit=10000')) 
+# Select data from the params$report_year, with common names including "snailfish", in the eastern bering sea
+res <- httr::GET(url = paste0(api_link, '?q={"year":"', report_year,
+                              '","common_name":{"$like":"%25snailfish%25"},"srvy":"EBS"}'))
+# subset to the actual data output from the above funciton
+dat0 <- jsonlite::fromJSON(base::rawToChar(res$content))$items
+
+# transform data for mapping
+dat00 <- sf::st_as_sf(dat0, coords = c("longitude_dd","latitude_dd"))
+dat00 <- sf::st_set_crs(dat00, "+proj=longlat +datum=WGS84") 
+dat00 <- sf::st_transform(x = dat00, crs = "EPSG:3338")
+
+# What species were caught this year?
+spp <- unique(dat0$common_name)
+```
+
+```{r child-general}
+src <- knitr::knit_expand(file = here::here('code4','template4_child_general.qmd'))
+```
+
+`r paste(knitr::knit(text = unlist(src)), collapse = '\n')`
+
+```{r loop}
+# Loop through qmd -------------------------------------------------------------
+src <- list() # an empty list to put all of the entry outputs in
+for (i in 1:length(spp)) { # cycle through each row of the spreadsheet
+  # dynamically fill out the madlib template and add output to the list
+  src[[i]] <- knitr::knit_expand(
+    file = here::here('code4','template4_child_loop.qmd')) # verbatim the same to code2 example
+}
+# below, print the output from the spreadsheet used in the madlib template
+```
+
+`r paste(knitr::knit(text = unlist(src)), collapse = '\n')`
+
+# Works Cited
+
+<div id="refs"></div>
+
