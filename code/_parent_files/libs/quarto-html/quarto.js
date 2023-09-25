@@ -5,7 +5,56 @@ const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   composed: false,
 });
 
+<<<<<<< HEAD
 window.document.addEventListener("DOMContentLoaded", function (_event) {
+=======
+const layoutMarginEls = () => {
+  // Find any conflicting margin elements and add margins to the
+  // top to prevent overlap
+  const marginChildren = window.document.querySelectorAll(
+    ".column-margin.column-container > * "
+  );
+
+  let lastBottom = 0;
+  for (const marginChild of marginChildren) {
+    if (marginChild.offsetParent !== null) {
+      // clear the top margin so we recompute it
+      marginChild.style.marginTop = null;
+      const top = marginChild.getBoundingClientRect().top + window.scrollY;
+      console.log({
+        childtop: marginChild.getBoundingClientRect().top,
+        scroll: window.scrollY,
+        top,
+        lastBottom,
+      });
+      if (top < lastBottom) {
+        const margin = lastBottom - top;
+        marginChild.style.marginTop = `${margin}px`;
+      }
+      const styles = window.getComputedStyle(marginChild);
+      const marginTop = parseFloat(styles["marginTop"]);
+
+      console.log({
+        top,
+        height: marginChild.getBoundingClientRect().height,
+        marginTop,
+        total: top + marginChild.getBoundingClientRect().height + marginTop,
+      });
+      lastBottom = top + marginChild.getBoundingClientRect().height + marginTop;
+    }
+  }
+};
+
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  // Recompute the position of margin elements anytime the body size changes
+  if (window.ResizeObserver) {
+    const resizeObserver = new window.ResizeObserver(
+      throttle(layoutMarginEls, 50)
+    );
+    resizeObserver.observe(window.document.body);
+  }
+
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
   const tocEl = window.document.querySelector('nav.toc-active[role="doc-toc"]');
   const sidebarEl = window.document.getElementById("quarto-sidebar");
   const leftTocEl = window.document.getElementById("quarto-sidebar-toc-left");
@@ -259,6 +308,10 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
 
   const manageSidebarVisiblity = (el, placeholderDescriptor) => {
     let isVisible = true;
+<<<<<<< HEAD
+=======
+    let elRect;
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
 
     return (hiddenRegions) => {
       if (el === null) {
@@ -269,11 +322,14 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
       const lastChildEl = el.lastElementChild;
 
       if (lastChildEl) {
+<<<<<<< HEAD
         // Find the top and bottom o the element that is being managed
         const elTop = el.offsetTop;
         const elBottom =
           elTop + lastChildEl.offsetTop + lastChildEl.offsetHeight;
 
+=======
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
         // Converts the sidebar to a menu
         const convertToMenu = () => {
           for (const child of el.children) {
@@ -281,6 +337,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
             child.style.overflow = "hidden";
           }
 
+<<<<<<< HEAD
           const toggleContainer = window.document.createElement("div");
           toggleContainer.style.width = "100%";
           toggleContainer.classList.add("zindex-over-content");
@@ -375,6 +432,114 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
               closeToggle();
             }
           };
+=======
+          nexttick(() => {
+            const toggleContainer = window.document.createElement("div");
+            toggleContainer.style.width = "100%";
+            toggleContainer.classList.add("zindex-over-content");
+            toggleContainer.classList.add("quarto-sidebar-toggle");
+            toggleContainer.classList.add("headroom-target"); // Marks this to be managed by headeroom
+            toggleContainer.id = placeholderDescriptor.id;
+            toggleContainer.style.position = "fixed";
+
+            const toggleIcon = window.document.createElement("i");
+            toggleIcon.classList.add("quarto-sidebar-toggle-icon");
+            toggleIcon.classList.add("bi");
+            toggleIcon.classList.add("bi-caret-down-fill");
+
+            const toggleTitle = window.document.createElement("div");
+            const titleEl = window.document.body.querySelector(
+              placeholderDescriptor.titleSelector
+            );
+            if (titleEl) {
+              toggleTitle.append(
+                titleEl.textContent || titleEl.innerText,
+                toggleIcon
+              );
+            }
+            toggleTitle.classList.add("zindex-over-content");
+            toggleTitle.classList.add("quarto-sidebar-toggle-title");
+            toggleContainer.append(toggleTitle);
+
+            const toggleContents = window.document.createElement("div");
+            toggleContents.classList = el.classList;
+            toggleContents.classList.add("zindex-over-content");
+            toggleContents.classList.add("quarto-sidebar-toggle-contents");
+            for (const child of el.children) {
+              if (child.id === "toc-title") {
+                continue;
+              }
+
+              const clone = child.cloneNode(true);
+              clone.style.opacity = 1;
+              clone.style.display = null;
+              toggleContents.append(clone);
+            }
+            toggleContents.style.height = "0px";
+            const positionToggle = () => {
+              // position the element (top left of parent, same width as parent)
+              if (!elRect) {
+                elRect = el.getBoundingClientRect();
+              }
+              toggleContainer.style.left = `${elRect.left}px`;
+              toggleContainer.style.top = `${elRect.top}px`;
+              toggleContainer.style.width = `${elRect.width}px`;
+            };
+            positionToggle();
+
+            toggleContainer.append(toggleContents);
+            el.parentElement.prepend(toggleContainer);
+
+            // Process clicks
+            let tocShowing = false;
+            // Allow the caller to control whether this is dismissed
+            // when it is clicked (e.g. sidebar navigation supports
+            // opening and closing the nav tree, so don't dismiss on click)
+            const clickEl = placeholderDescriptor.dismissOnClick
+              ? toggleContainer
+              : toggleTitle;
+
+            const closeToggle = () => {
+              if (tocShowing) {
+                toggleContainer.classList.remove("expanded");
+                toggleContents.style.height = "0px";
+                tocShowing = false;
+              }
+            };
+
+            // Get rid of any expanded toggle if the user scrolls
+            window.document.addEventListener(
+              "scroll",
+              throttle(() => {
+                closeToggle();
+              }, 50)
+            );
+
+            // Handle positioning of the toggle
+            window.addEventListener(
+              "resize",
+              throttle(() => {
+                elRect = undefined;
+                positionToggle();
+              }, 50)
+            );
+
+            window.addEventListener("quarto-hrChanged", () => {
+              elRect = undefined;
+            });
+
+            // Process the click
+            clickEl.onclick = () => {
+              if (!tocShowing) {
+                toggleContainer.classList.add("expanded");
+                toggleContents.style.height = null;
+                tocShowing = true;
+              } else {
+                closeToggle();
+              }
+            };
+          });
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
         };
 
         // Converts a sidebar from a menu back to a sidebar
@@ -398,6 +563,14 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
           convertToMenu();
           isVisible = false;
         } else {
+<<<<<<< HEAD
+=======
+          // Find the top and bottom o the element that is being managed
+          const elTop = el.offsetTop;
+          const elBottom =
+            elTop + lastChildEl.offsetTop + lastChildEl.offsetHeight;
+
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
           if (!isVisible) {
             // If the element is current not visible reveal if there are
             // no conflicts with overlay regions
@@ -418,6 +591,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     };
   };
 
+<<<<<<< HEAD
   // Find any conflicting margin elements and add margins to the
   // top to prevent overlap
   const marginChildren = window.document.querySelectorAll(
@@ -438,6 +612,53 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
       lastBottom = top + marginChild.getBoundingClientRect().height + marginTop;
     }
   });
+=======
+  const tabEls = document.querySelectorAll('a[data-bs-toggle="tab"]');
+  for (const tabEl of tabEls) {
+    const id = tabEl.getAttribute("data-bs-target");
+    if (id) {
+      const columnEl = document.querySelector(
+        `${id} .column-margin, .tabset-margin-content`
+      );
+      if (columnEl)
+        tabEl.addEventListener("shown.bs.tab", function (event) {
+          const el = event.srcElement;
+          if (el) {
+            const visibleCls = `${el.id}-margin-content`;
+            // walk up until we find a parent tabset
+            let panelTabsetEl = el.parentElement;
+            while (panelTabsetEl) {
+              if (panelTabsetEl.classList.contains("panel-tabset")) {
+                break;
+              }
+              panelTabsetEl = panelTabsetEl.parentElement;
+            }
+
+            if (panelTabsetEl) {
+              const prevSib = panelTabsetEl.previousElementSibling;
+              if (
+                prevSib &&
+                prevSib.classList.contains("tabset-margin-container")
+              ) {
+                const childNodes = prevSib.querySelectorAll(
+                  ".tabset-margin-content"
+                );
+                for (const childEl of childNodes) {
+                  if (childEl.classList.contains(visibleCls)) {
+                    childEl.classList.remove("collapse");
+                  } else {
+                    childEl.classList.add("collapse");
+                  }
+                }
+              }
+            }
+          }
+
+          layoutMarginEls();
+        });
+    }
+  }
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
 
   // Manage the visibility of the toc and the sidebar
   const marginScrollVisibility = manageSidebarVisiblity(marginSidebarEl, {
@@ -506,8 +727,14 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
   const kOverlapPaddingSize = 10;
   function toRegions(els) {
     return els.map((el) => {
+<<<<<<< HEAD
       const top =
         el.getBoundingClientRect().top +
+=======
+      const boundRect = el.getBoundingClientRect();
+      const top =
+        boundRect.top +
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
         document.documentElement.scrollTop -
         kOverlapPaddingSize;
       return {
@@ -517,11 +744,59 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     });
   }
 
+<<<<<<< HEAD
   const hideOverlappedSidebars = () => {
     marginScrollVisibility(toRegions(rightSideConflictEls));
     sidebarScrollVisiblity(toRegions(leftSideConflictEls));
     if (tocLeftScrollVisibility) {
       tocLeftScrollVisibility(toRegions(leftSideConflictEls));
+=======
+  let hasObserved = false;
+  const visibleItemObserver = (els) => {
+    let visibleElements = [...els];
+    const intersectionObserver = new IntersectionObserver(
+      (entries, _observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (visibleElements.indexOf(entry.target) === -1) {
+              visibleElements.push(entry.target);
+            }
+          } else {
+            visibleElements = visibleElements.filter((visibleEntry) => {
+              return visibleEntry !== entry;
+            });
+          }
+        });
+
+        if (!hasObserved) {
+          hideOverlappedSidebars();
+        }
+        hasObserved = true;
+      },
+      {}
+    );
+    els.forEach((el) => {
+      intersectionObserver.observe(el);
+    });
+
+    return {
+      getVisibleEntries: () => {
+        return visibleElements;
+      },
+    };
+  };
+
+  const rightElementObserver = visibleItemObserver(rightSideConflictEls);
+  const leftElementObserver = visibleItemObserver(leftSideConflictEls);
+
+  const hideOverlappedSidebars = () => {
+    marginScrollVisibility(toRegions(rightElementObserver.getVisibleEntries()));
+    sidebarScrollVisiblity(toRegions(leftElementObserver.getVisibleEntries()));
+    if (tocLeftScrollVisibility) {
+      tocLeftScrollVisibility(
+        toRegions(leftElementObserver.getVisibleEntries())
+      );
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
     }
   };
 
@@ -543,7 +818,10 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
       manageTransition("TOC", slow);
       manageTransition("quarto-sidebar", slow);
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
     const readerMode = !isReaderMode();
     setReaderModeValue(readerMode);
 
@@ -590,6 +868,12 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
   };
   let localReaderMode = null;
 
+<<<<<<< HEAD
+=======
+  const tocOpenDepthStr = tocEl?.getAttribute("data-toc-expanded");
+  const tocOpenDepth = tocOpenDepthStr ? Number(tocOpenDepthStr) : 1;
+
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
   // Walk the TOC and collapse/expand nodes
   // Nodes are expanded if:
   // - they are top level
@@ -615,7 +899,17 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
 
     // Process the collapse state if this is an UL
     if (el.tagName === "UL") {
+<<<<<<< HEAD
       if (depth === 1 || hasActiveChild || prevSiblingIsActiveLink(el)) {
+=======
+      if (tocOpenDepth === -1 && depth > 1) {
+        el.classList.add("collapse");
+      } else if (
+        depth <= tocOpenDepth ||
+        hasActiveChild ||
+        prevSiblingIsActiveLink(el)
+      ) {
+>>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
         el.classList.remove("collapse");
       } else {
         el.classList.add("collapse");
