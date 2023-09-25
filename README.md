@@ -1,24 +1,29 @@
-- [Purpose](#purpose)
-  - [Example: snailfish one-pager](#example-snailfish-one-pager)
-- [Additional Resources](#additional-resources)
+- [Automated reporting examples
+  <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>](#automated-reporting-examples)
+  - [Purpose](#purpose)
+    - [Example: snailfish one-pager](#example-snailfish-one-pager)
+  - [Additional Resources](#additional-resources)
   - [NOAA README](#noaa-readme)
   - [NOAA License](#noaa-license)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- # [Automated reporting examples](https://github.com/scruglife/automated-reports-2023) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/> -->
+
+# [Automated reporting examples](https://github.com/scruglife/automated-reports-2023) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
+
+> September 26, 2023
 
 > This code is always in development. Find code used for final products
 > of this code in
 > [releases](paste0(https://github.com/scruglife/automated-reports-2023,%20%22/releases%22)).
 
-# Purpose
+## Purpose
 
 These materials were developed to serve as a simple template example for
 how to use Markdown and Quarto to automate reports, one-pagers, and
 other data summaries. They were developed for GAP’s Survey-centric R
 Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 
-## Example: snailfish one-pager
+### Example: snailfish one-pager
 
 The code is
 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4).
@@ -30,7 +35,7 @@ publicly available from the Fisheries One Stop Shop (FOSS, NOAA
 Fisheries Alaska Fisheries Science Center (2023)) and in this [GitHub
 Repo](https://github.com/afsc-gap-products/gap_public_data).
 
-# Additional Resources
+## Additional Resources
 
 - A template script for making chapters (for when you need to repeat the
   same content for, e.g., several different species): [example by
