@@ -16,7 +16,9 @@ link_repo <- "https://github.com/scruglife/automated-reports-2023"
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# [Automated reporting examples](`r link_repo`) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
+# [Automated reporting examples](`r link_repo`) 
+
+<img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
 
 > September 26, 2023
 

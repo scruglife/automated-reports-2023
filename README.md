@@ -1,5 +1,4 @@
-- [Automated reporting examples
-  <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>](#automated-reporting-examples)
+- [Automated reporting examples](#automated-reporting-examples)
   - [Purpose](#purpose)
     - [Example: snailfish one-pager](#example-snailfish-one-pager)
   - [Additional Resources](#additional-resources)
@@ -8,7 +7,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# [Automated reporting examples](https://github.com/scruglife/automated-reports-2023) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
+# [Automated reporting examples](https://github.com/scruglife/automated-reports-2023)
+
+<img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
 
 > September 26, 2023
 
