@@ -49,6 +49,6 @@ po/*~
 rsconnect/
 
 # Parent files
-code/_parent_files/
+code/_parent_files/*
 
 # Knitted docs

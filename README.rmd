@@ -1,40 +1,45 @@
 ---
+title: "2023 Automated reporting examples"
+date: "September 26, 2023"
 output: 
   md_document: 
     variant: gfm
     toc: true
+bibliography: "https://raw.githubusercontent.com/afsc-gap-products/citations/main/cite/bibliography.bib"
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa-no-ampersand.csl"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warnings = FALSE, error = FALSE, message = FALSE, comment = FALSE)
-link_repo <- "https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex"
+link_repo <- "https://github.com/scruglife/automated-reports-2023"
 ```
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# [Automated reporting examples](`r link_repo`) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
+# [Automated reporting examples](`r link_repo`) 
 
-*This code is always in development. Find code used for final products of this code in [releases](paste0(`r link_repo`, "/releases")).*
+<img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
 
+> September 26, 2023
 
-# Purpose
+> This code is always in development. Find code used for final products of this code in [releases](paste0(`r link_repo`, "/releases")).
+
+## Purpose
 These materials were developed to serve as a simple template example for how to use Markdown and Quarto to automate reports, one-pagers, and other data summaries. They were developed for GAP's Survey-centric R Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 
-## Example: snailfish one-pager
+### Example: snailfish one-pager
 
 The code is [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4). Run this code from the `run4.r` script. 
 
 Here we will start to work with some real data and annual reporting on snailfish catches in the eastern Bering Sea bottom trawl survey. Data is publicly available from the Fisheries One Stop Shop (FOSS, @FOSSAFSCData) and in this [GitHub Repo](https://github.com/afsc-gap-products/gap_public_data). 
 
-# Additional Resources
+## Additional Resources
 
  - A template script for making chapters (for when you need to repeat the same content for, e.g., several different species):  [example by Margaret Siple](https://github.com/MargaretSiple-NOAA/parameterized-indexing-example) - contains Quarto and Markdown solutions
- - Anything and everything from [Eli Hmles](http://eeholmes.github.io/) @ eeholmes!
+ - Anything and everything from [Eli Holmes](http://eeholmes.github.io/) @ eeholmes!
     - [quarto-thesis](https://github.com/nmfs-opensci/quarto-thesis) 
     - [Other quarto examples and templates @ nmfs-opensci](https://github.com/orgs/nmfs-opensci/repositories?q=quarto&type=all&language=&sort=)
     - Her [youtube channel](https://www.youtube.com/@eeholmes-datascience4849) is teaming with awesome examples!
-
 
 ## NOAA README
 
