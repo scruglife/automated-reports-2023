@@ -1,3 +1,15 @@
+- [Automated reporting examples
+  <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>](#automated-reporting-examples)
+- [Table of contents](#table-of-contents)
+- [Purpose](#purpose)
+  - [Example: snailfish one-pager](#example-snailfish-one-pager)
+- [Additional Resources](#additional-resources)
+- [Works Cited](#works-cited)
+- [Suggestions and Comments](#suggestions-and-comments)
+  - [R Version Metadata](#r-version-metadata)
+  - [NOAA README](#noaa-readme)
+  - [NOAA License](#noaa-license)
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # [Automated reporting examples](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex) <img src="https://avatars.githubusercontent.com/u/91760178?s=96&amp;v=4" alt="Logo." align="right" width="139" height="139"/>
@@ -6,22 +18,9 @@
 of this code in
 [releases](paste0(https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex,%20%22/releases%22)).*
 
-## This code is primarally maintained by:
-
-**Emily Markowitz** (Emily.Markowitz AT noaa.gov;
-[@EmilyMarkowitz-NOAA](https://github.com/EmilyMarkowitz-NOAA)) - Alaska
-Fisheries Science Center, - National Marine Fisheries Service, -
-National Oceanic and Atmospheric Administration, - Seattle, WA 98115
-
 # Table of contents
 
-> - [*Purpose*](#purpose)
-> - [*Outline*](#outline)
->   - [*Presenation materials*](#presenation-materials)
->   - [*Example 1*](#example-1)
->   - [*Example 2*](#example-2)
->   - [*Example 3*](#example-3)
->   - [*Example 4*](#example-4)
+> - [*Example: snailfish one-pager*](#example:-snailfish-one-pager)
 > - [*Additional Resources*](#additional-resources)
 > - [*Works Cited*](#works-cited)
 > - [*Suggestions and Comments*](#suggestions-and-comments)
@@ -31,59 +30,14 @@ National Oceanic and Atmospheric Administration, - Seattle, WA 98115
 
 # Purpose
 
-These materials were developed for the 2023 UMass Dartmouth QuantFish
-Seminar Series by, myself, [Em
-Markowitz](https://emilyhmarkowitz.github.io/emilyhmarkowitz/).
+These materials were developed to serve as a simple template example for
+how to use Markdown and Quarto to automate reports, one-pagers, and
+other data summaries. They were developed for GAP’s Survey-centric R
+Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 
-# Outline
+## Example: snailfish one-pager
 
-## Presenation materials
-
-- Final presentation slides will be posted after the seminar. In the
-  mean time, those with access have the [google
-  slides](https://docs.google.com/presentation/d/1-AbDrGG_8Vfxh_WacMPbPQuqneMvFNh6HCQrjSDLBUs/edit?usp=sharing).
-- Script examples are available in this
-  [repository](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex).
-- The first three examples are based on entries to this [google
-  form](https://forms.gle/stVH7EdhwH4n8azz7) where participants will
-  ‘MadLib’ a story together.
-
-## Example 1
-
-Find the code for example 1
-[here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code1).
-Run this code from the `template1.qmd` script.
-
-- Dynamically fill in a simple, 1-template MadLib example for one entry
-- Use code chunks and in-line code calls.
-- Apply some simple formatting (e.g., bolding, italics)
-
-## Example 2
-
-Find the code for example 2
-[here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code2).
-Run this code from the `template1_parent.qmd` script.
-
-- Cycle data through parent and child quarto docs
-- Naming chunks
-- Using local functions in in-line code chunks
-
-## Example 3
-
-Find the code for example 3
-[here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code3).
-Run this code from the `run3.r` script.
-
-- Call `.qmd` from `.r` script
-- Play around with `YAML` settings
-- Apply table and figure cross referencing
-- Apply citation cross referencing
-- Use citation style library (`.csl`)
-- Use bibtex file (`.bib`, contains citations)
-
-## Example 4
-
-Find the code for example 4
+The code is
 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4).
 Run this code from the `run4.r` script.
 
@@ -110,13 +64,13 @@ Repo](https://github.com/afsc-gap-products/gap_public_data).
   - [Annual Bering Sea Bottom Trawl Data
     Reports](https://github.com/afsc-gap-products/gap_bs_data_report)
     (Markowitz, Dawson, Charriere, Prohaska, Rohan, Stevenson, et al.,
-    2022b, 2022a, In review; Markowitz, Dawson, Charriere, Prohaska,
-    Rohan, Haehn, et al., 2022)
+    2022b, 2022a; Markowitz, Dawson, Charriere, Prohaska, Rohan, Haehn,
+    et al., 2022; **2022NEBS2022?**)
   - [Daily Temperature and Survey Progress
     Maps](https://github.com/afsc-gap-products/survey-live-temperature-map)
     (Markowitz, Dawson, Charriere, Prohaska, Rohan, Stevenson, et al.,
-    2022b, 2022a, In review; Markowitz, Dawson, Charriere, Prohaska,
-    Rohan, Haehn, et al., 2022)
+    2022b, 2022a; Markowitz, Dawson, Charriere, Prohaska, Rohan, Haehn,
+    et al., 2022; **2022NEBS2022?**)
 
 # Works Cited
 
@@ -129,7 +83,7 @@ Markowitz, E. H., Dawson, E. J., Charriere, N. E., Prohaska, B. K.,
 Rohan, S. K., Haehn, R. A., Stevenson, D. E., and Britt, L. L. (2022).
 *Results of the 2018 eastern Bering Sea continental shelf bottom trawl
 survey of groundfish and invertebrate fauna* (NOAA Tech. Memo.
-NMFS-F/SPO-450; p. 183). U.S. Dep. Commer.
+NMFS-AFSC-450; p. 183). U.S. Dep. Commer.
 <https://doi.org/10.25923/m4pw-t510>
 
 </div>
@@ -140,7 +94,7 @@ Markowitz, E. H., Dawson, E. J., Charriere, N. E., Prohaska, B. K.,
 Rohan, S. K., Stevenson, D. E., and Britt, L. L. (2022a). *Results of
 the 2019 eastern and northern Bering Sea continental shelf bottom trawl
 survey of groundfish and invertebrate fauna* (NOAA Tech. Memo.
-NMFS-F/SPO-451; p. 225). U.S. Dep. Commer.
+NMFS-AFSC-451; p. 225). U.S. Dep. Commer.
 <https://doi.org/10.25923/d641-xb21>
 
 </div>
@@ -151,18 +105,8 @@ Markowitz, E. H., Dawson, E. J., Charriere, N. E., Prohaska, B. K.,
 Rohan, S. K., Stevenson, D. E., and Britt, L. L. (2022b). *Results of
 the 2021 eastern and northern Bering Sea continental shelf bottom trawl
 survey of groundfish and invertebrate fauna* (NOAA Tech. Memo.
-NMFS-F/SPO-452; p. 227). U.S. Dep. Commer.
+NMFS-AFSC-452; p. 227). U.S. Dep. Commer.
 <https://doi.org/10.25923/g1ny-y360>
-
-</div>
-
-<div id="ref-2022NEBS2022" class="csl-entry">
-
-Markowitz, E. H., Dawson, E. J., Charriere, N. E., Prohaska, B. K.,
-Rohan, S. K., Stevenson, D. E., and Britt, L. L. (In review). *Results
-of the 2022 eastern and northern Bering Sea continental shelf bottom
-trawl survey of groundfish and invertebrate fauna* \[NOAA Tech. Memo.\].
-U.S. Dep. Commer.
 
 </div>
 
@@ -205,13 +149,12 @@ repository](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/issues
     FALSE [1] stats     graphics  grDevices utils     datasets  methods   base     
     FALSE 
     FALSE loaded via a namespace (and not attached):
-    FALSE  [1] fansi_1.0.4       utf8_1.2.3        digest_0.6.31     R6_2.5.1         
-    FALSE  [5] lifecycle_1.0.3   magrittr_2.0.3    evaluate_0.20     pillar_1.9.0     
-    FALSE  [9] httr_1.4.5        rlang_1.1.0       stringi_1.7.12    cli_3.6.1        
-    FALSE [13] data.table_1.14.8 rstudioapi_0.14   vctrs_0.6.1       rmarkdown_2.20   
-    FALSE [17] tools_4.2.3       glue_1.6.2        xfun_0.38         yaml_2.3.7       
-    FALSE [21] fastmap_1.1.1     compiler_4.2.3    pkgconfig_2.0.3   readtext_0.81    
-    FALSE [25] htmltools_0.5.5   knitr_1.42        tibble_3.2.1
+    FALSE  [1] fansi_1.0.4       utf8_1.2.3        digest_0.6.33     R6_2.5.1         
+    FALSE  [5] lifecycle_1.0.3   evaluate_0.21     pillar_1.9.0      httr_1.4.7       
+    FALSE  [9] rlang_1.1.1       stringi_1.7.12    cli_3.6.1         data.table_1.14.8
+    FALSE [13] rstudioapi_0.15.0 vctrs_0.6.3       rmarkdown_2.24    tools_4.2.3      
+    FALSE [17] glue_1.6.2        xfun_0.40         yaml_2.3.7        fastmap_1.1.1    
+    FALSE [21] compiler_4.2.3    readtext_0.90     htmltools_0.5.6   knitr_1.43
 
 ## NOAA README
 

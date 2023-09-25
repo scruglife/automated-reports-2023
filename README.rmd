@@ -2,8 +2,8 @@
 output: 
   md_document: 
     variant: gfm
+    toc: true
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa-no-ampersand.csl"
-bibliography: "https://raw.githubusercontent.com/afsc-gap-products/citations/main/cite/bibliography.bib"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,105 +17,24 @@ link_repo <- "https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex"
 
 *This code is always in development. Find code used for final products of this code in [releases](paste0(`r link_repo`, "/releases")).*
 
-## This code is primarally maintained by:
-
-**Emily Markowitz** (Emily.Markowitz AT noaa.gov; [\@EmilyMarkowitz-NOAA](https://github.com/EmilyMarkowitz-NOAA))
- - Alaska Fisheries Science Center,
- - National Marine Fisheries Service,
- - National Oceanic and Atmospheric Administration,
- - Seattle, WA 98115
-
-# Table of contents
-
-```{r toc, echo = FALSE, eval = TRUE, warning=FALSE}
-toc <- strsplit(x = readtext::readtext(file = "./README.Rmd", verbosity = 0)[[2]], split = "\n")
-toc <- toc[[1]][substr(x = toc[[1]], start = 1, stop = 1) == "#"]
-toc <- toc[-c(1:3)]
-toc_list <- toc
-toc_list <- gsub(pattern = "### ", replacement = ">      - [*", x = toc_list, fixed = TRUE)
-toc_list <- gsub(pattern = "## ", replacement = ">    - [*", x = toc_list, fixed = TRUE)
-toc_list <- gsub(pattern = "# ", replacement = ">  - [*", x = toc_list, fixed = TRUE)
-toc_link <- tolower(gsub(pattern = " ", replacement = "-", 
-                          x = gsub(pattern = "#", replacement = "", 
-                                   x = gsub(pattern = "# ", replacement = "", 
-                                            x = toc, fixed = TRUE), fixed = TRUE)))
-toc <- paste0(toc_list, "*](#", toc_link, ")", collapse = "\n")
-```
-
-`r toc`
 
 # Purpose
+These materials were developed to serve as a simple template example for how to use Markdown and Quarto to automate reports, one-pagers, and other data summaries. They were developed for GAP's Survey-centric R Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 
-These materials were developed for the 2023 UMass Dartmouth QuantFish Seminar Series by, myself, [Em Markowitz](https://emilyhmarkowitz.github.io/emilyhmarkowitz/). 
+## Example: snailfish one-pager
 
-# Outline
-
-## Presenation materials
-
- - Final presentation slides will be posted after the seminar. In the mean time, those with access have the [google slides](https://docs.google.com/presentation/d/1-AbDrGG_8Vfxh_WacMPbPQuqneMvFNh6HCQrjSDLBUs/edit?usp=sharing). 
- - Script examples are available in this [repository](`r link_repo`). 
- - The first three examples are based on entries to this [google form](https://forms.gle/stVH7EdhwH4n8azz7) where participants will 'MadLib' a story together. 
-
-## Example 1
-
-Find the code for example 1 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code1). Run this code from the `template1.qmd` script. 
-
- - Dynamically fill in a simple, 1-template MadLib example for one entry
- - Use code chunks and in-line code calls. 
- - Apply some simple formatting (e.g., bolding, italics)
-
-## Example 2
-
-Find the code for example 2 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code2). Run this code from the `template1_parent.qmd` script. 
-
- - Cycle data through parent and child quarto docs
- - Naming chunks
- - Using local functions in in-line code chunks
- 
-## Example 3
-
-Find the code for example 3 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code3). Run this code from the `run3.r` script. 
-
- - Call `.qmd` from `.r` script
- - Play around with `YAML` settings
- - Apply table and figure cross referencing
- - Apply citation cross referencing
- - Use citation style library (`.csl`) 
- - Use bibtex file (`.bib`, contains citations)
-
-## Example 4
-
-Find the code for example 4 [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4). Run this code from the `run4.r` script. 
+The code is [here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4). Run this code from the `run4.r` script. 
 
 Here we will start to work with some real data and annual reporting on snailfish catches in the eastern Bering Sea bottom trawl survey. Data is publicly available from the Fisheries One Stop Shop (FOSS, @FOSSAFSCData) and in this [GitHub Repo](https://github.com/afsc-gap-products/gap_public_data). 
 
 # Additional Resources
 
- - This script is heavily based on the simpler and fabulous [example by Margaret Siple](https://github.com/MargaretSiple-NOAA/parameterized-indexing-example)
+ - A template script for making chapters (for when you need to repeat the same content for, e.g., several different species):  [example by Margaret Siple](https://github.com/MargaretSiple-NOAA/parameterized-indexing-example) - contains Quarto and Markdown solutions
  - Anything and everything from [Eli Hmles](http://eeholmes.github.io/) @ eeholmes!
     - [quarto-thesis](https://github.com/nmfs-opensci/quarto-thesis) 
     - [Other quarto examples and templates @ nmfs-opensci](https://github.com/orgs/nmfs-opensci/repositories?q=quarto&type=all&language=&sort=)
     - Her [youtube channel](https://www.youtube.com/@eeholmes-datascience4849) is teaming with awesome examples!
-  - Example repos and publications include 
-    - [Annual Bering Sea Bottom Trawl Data Reports](https://github.com/afsc-gap-products/gap_bs_data_report) [@2021NEBS2022; @2018EBS2022; @2019NEBS2022; @2022NEBS2022]
-    - [Daily Temperature and Survey Progress Maps](https://github.com/afsc-gap-products/survey-live-temperature-map) [@2021NEBS2022; @2018EBS2022; @2019NEBS2022; @2022NEBS2022]
 
-# Works Cited
-
-<div id="refs"></div>
-
-# Suggestions and Comments
-
-If you see that the data, product, or metadata can be improved, you are invited to create a 
-[pull request](`r paste0(link_repo, "/pulls")`), 
-[submit an issue to the GitHub organization](`r "https://github.com/afsc-gap-products/data-requests/issues"`), or 
-[submit an issue to the code's repository](`r paste0(link_repo, "/issues")`).
-
-## R Version Metadata
-
-```{r}
-sessionInfo()
-```
 
 ## NOAA README
 
