@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Parent files
+code/_parent_files/
+
+# Knitted docs
