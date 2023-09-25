@@ -52,6 +52,9 @@ div.csl-indent {
 <script src="_parent_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="_parent_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="_parent_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="_parent_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="_parent_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="_parent_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -111,6 +114,27 @@ div.csl-indent {
 </div>
 </div>
 </div>
+<section id="methods" class="level1">
+<h1>Methods</h1>
+<p>Quarto has support for some fancy accessories that are helpful for reports. For example, you can create flowcharts using tools like <code>{mermaid}</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+  A[Survey data] --&gt; B(Processed data products)
+  B --&gt; C{R code and Markdown}
+  C --&gt; D[Presentations]
+  C --&gt; E[Data process reports]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="works-cited" class="level1">
 <h1>Works Cited</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
