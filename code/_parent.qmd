@@ -70,6 +70,16 @@ spp <- unique(dat0$common_name)
 
 {{< include _child_intro.qmd >}}
 
+# Methods
+Quarto has support for some fancy accessories that are helpful for reports. For example, you can create flowcharts using tools like `{mermaid}`.
+
+```{mermaid}
+flowchart LR
+  A[Survey data] --> B(Processed data products)
+  B --> C{R code and Markdown}
+  C --> D[Presentations]
+  C --> E[Data process reports]
+```
 
 # Works Cited
 
