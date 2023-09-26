@@ -17,9 +17,3 @@ for (report_year in c(2010, 2021, 2022)) { # A few years to cycle through
             overwrite = TRUE)
   file.remove(from = here::here(paste0("report_",report_year,".html")))
 }
-
-
-# copy to a "/docs" folder so it will be readable in the repo
-file.copy(from = here::here("code", paste0("report_",report_year,".html")),
-          to = here::here("docs", paste0("report_",report_year,".html")), 
-          overwrite = TRUE)
