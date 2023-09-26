@@ -1,5 +1,6 @@
 - [Automated reporting examples](#automated-reporting-examples)
   - [Purpose](#purpose)
+    - [Presentation slides](#presentation-slides)
     - [Example: snailfish one-pager](#example-snailfish-one-pager)
   - [Additional Resources](#additional-resources)
   - [NOAA README](#noaa-readme)
@@ -19,6 +20,10 @@ These materials were developed to serve as a simple template example for
 how to use Markdown and Quarto to automate reports, one-pagers, and
 other data summaries. They were developed for GAP’s Survey-centric R
 Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
+
+### [Presentation slides](https://scruglife.github.io/automated-reports-2023/#/title-slide)
+
+These slides were made in Quarto, too!
 
 ### Example: snailfish one-pager
 

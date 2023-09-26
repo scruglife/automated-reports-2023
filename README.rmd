@@ -26,6 +26,10 @@ link_repo <- "https://github.com/scruglife/automated-reports-2023"
 ## Purpose
 These materials were developed to serve as a simple template example for how to use Markdown and Quarto to automate reports, one-pagers, and other data summaries. They were developed for GAP's Survey-centric R Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 
+### [Presentation slides](https://scruglife.github.io/automated-reports-2023/#/title-slide)
+
+These slides were made in Quarto, too!
+
 ### Example: snailfish one-pager
 
 The code is [here](https://github.com/scruglife/automated-reports-2023/tree/main). You can compile the document from within `parent.qmd` (click "Render") or using the `run.R` script.
