@@ -46,7 +46,6 @@ for (p in PKG) { # this loops through each package,
 ```
 
 ```{r load-data}
-
 report_year <- 2022
 
 # Download data ----------------------------------------------------------------
@@ -66,6 +65,7 @@ dat00 <- sf::st_transform(x = dat00, crs = "EPSG:3338")
 
 # What species were caught this year?
 spp <- unique(dat0$common_name)
+
 ```
 
 {{< include _child_intro.qmd >}}
