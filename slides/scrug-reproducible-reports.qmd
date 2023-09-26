@@ -17,40 +17,39 @@ Quarto enables you to weave together content and executable code into a finished
 
 These slides were also made with [Quarto](https://quarto.org/docs/presentations/).
 
-
 ## More Quarto
 
 ![The Quarto.org page has some solid "starting out" material](https://quarto.org/docs/get-started/hello/images/rstudio-hello.png){fig-alt="A screenshot from the intro page to Quarto."}
 
 ## The rainbow of reproducible options :rainbow:
 
-:::: {.columns}
-
-::: {.column}
+::: columns
+::: column
 ### Low investment
-- One-pagers
-- Drafts of reports (layout and indexing are done, but more edits needed to publish)
+
+-   One-pagers
+-   Drafts of reports (layout and indexing are done, but more edits needed to publish)
 
 ### Features
+
 Data are accessible, minimal wrangling needed. Minimal hierarchy and repeats.
 :::
 
-::: {.column}
+::: column
 ### High investment
-- Fully automated reports
-- Very carefully formatted things
+
+-   Fully automated reports
+-   Very carefully formatted things
 
 ### Features
-- Parent and child docs, conditional situations, and special formatting.
+
+-   Parent and child docs, conditional situations, and special formatting.
 :::
-
-::::
-
+:::
 
 ## Demo: A one-pager on snailfish
 
-Clone the repo at [https://github.com/scruglife/automated-reports-2023/](https://github.com/scruglife/automated-reports-2023/).
-
+Clone the repo at <https://github.com/scruglife/automated-reports-2023/>.
 
 ### Components
 
@@ -60,10 +59,21 @@ Clone the repo at [https://github.com/scruglife/automated-reports-2023/](https:/
 
 # More stuff
 
-## How to use parameters in reports 
+## How to use parameters in reports
 
-## Resources 
-- Eli Holmes videos 
-- Tom Mock's [introduction](https://www.youtube.com/watch?v=hbf7Ai3jnxY) (he starts with parameterizing!)
-- 
+## Resources
+
+-   Eli Holmes [repos](https://github.com/nmfs-opensci) and [videos](https://www.youtube.com/@eeholmes-datascience4849)
+-   Tom Mock's [introduction](https://www.youtube.com/watch?v=hbf7Ai3jnxY) (he starts with parameterizing!)
+
+## Examples from your peers
+
+It can be helpful to see quarto and rmarkdown in practice. There are many reports being created by our colleges who post their code on GitHub.
+
+-  Easy: [Bering Sea ADFG Activities Report](https://github.com/afsc-gap-products/ADFG_activites_report_Bering_Sea) by Nicole Charriere and Rebecca Haehn
+-  Moderate: [Observer credible length ranges report](https://github.com/afsc-gap-products/FMA-range-verification) by Chris Anderson
+-  Moderate: [Special project posters and listings](https://github.com/afsc-gap-products/gap_special_projects) by Liz Dawson and Em Markowitz
+-  Very complicated: [Bering Sea Data Report](https://github.com/afsc-gap-products/gap_bs_data_report) by Em Markowitz, Liz Dawson, and Chris Anderson
+-  Very very complicated: [GAP Products documentation quarto book](https://github.com/afsc-gap-products/gap_products) by many
+
 

@@ -16,59 +16,56 @@ The geographic distribution of `r spp1` (@fig-map-{{report_year}}-{{i}}), and th
 
 ```{r, fig.cap=paste0("Map of ", spp1, " distribution in ", report_year, ". ")}
 #| label: fig-map-{{report_year}}-{{i}}
+      
+# Create map
+pp <- ggplot2::ggplot() +
 
-reg_dat <- akgfmaps::get_base_layers(
-  select.region = "bs.south", 
-  set.crs = "EPSG:3338") 
+  ggplot2::geom_sf( # Alaska land shapefiles
+    data = reg_dat$akland,
+    color = NA,
+    fill = "grey50")  +
+  
+  ggplot2::geom_sf( # Graticule line shapefiles
+    data = reg_dat$graticule,
+    color = "grey80",
+    alpha = 0.2) +
+  
+  ggplot2::geom_sf( # Survey area shapefile
+    data = reg_dat$survey.area,
+    mapping = aes(fill = SURVEY,
+                  geometry = geometry),
+    alpha = .5, 
+    size = 1) + 
+  ggplot2::scale_fill_grey(start = .6, end = .9) +
+  
+  ggplot2::geom_sf( # Species data
+    data = dat00[dat00$common_name == spp1,], 
+    mapping = aes(color = common_name, 
+                  size = as.numeric(cpue_kgkm2)), 
+    shape = 16) + 
+  ggplot2::scale_color_viridis_d(option = "G", end = .8, alpha = .8) +
+  
+  # Manage Axis extents (limits) and breaks
+  ggplot2::scale_y_continuous(
+    name = "",
+    limits = reg_dat$plot.boundary$y, 
+    breaks = reg_dat$lat.breaks) +
+  ggplot2::scale_x_continuous(
+    name = "",
+    limits = reg_dat$plot.boundary$x, 
+    breaks = reg_dat$lon.breaks) + 
+  
+  ggplot2::ggtitle( # plot title
+    label = paste0("Snailfish Presense in ", {{params$report_year}}), 
+    subtitle = "Source: https://www.fisheries.noaa.gov/foss")  +
 
-p <- ggplot() +
-    ggplot2::geom_sf(
-      data = dat00[dat00$common_name == spp1,],
-      mapping = aes(size = cpue_kgkm2), 
-      show.legend = FALSE,
-      size = 3, 
-      color = "green") +
-    ggplot2::geom_sf(
-      data = reg_dat$akland,
-            color = NA,
-            fill = "grey50")  +
-    ggplot2::geom_sf(
-      data = reg_dat$graticule,
-            color = "grey80",
-            alpha = 0.2) +
-    ggplot2::scale_y_continuous(
-      name = "",
-      limits = reg_dat$plot.boundary$y, 
-      breaks = reg_dat$lat.breaks) +
-    ggplot2::scale_x_continuous(
-      name = "",
-      limits = reg_dat$plot.boundary$x, 
-      breaks = reg_dat$lon.breaks) +
-    ggplot2::geom_sf(
-      data = reg_dat$survey.area,
-      mapping = aes(color = SURVEY,
-                    geometry = geometry),
-      fill = "transparent",
-      size = 1,
-      show.legend = FALSE) +
-    theme( 
-      panel.background = element_rect(fill = "white", 
-                                      colour = NA), 
-      panel.border = element_rect(fill = NA, 
-                                  colour = "grey20"), 
-      axis.text = element_text(size = 8), 
-      strip.background = element_blank(), 
-      strip.text = element_text(size = 10, face = "bold"), 
-      legend.text = element_text(size = 9),
-      legend.background = element_rect(colour = "transparent", 
-                                       fill = "transparent"),
-      legend.key = element_rect(colour = "transparent", 
-                                fill = "transparent"),
-      legend.position = "bottom", 
-      legend.box = "horizontal") +
-  ggplot2::ggtitle(paste0(spp1, " in ", report_year))
+  # Aesthetics
+  ggplot2::guides(fill = "none", 
+                  size = guide_legend(title="CPUE (kg/km2)"), 
+                  color = guide_legend(title="Species of\nSnailfish")) +
+  ggplot2::theme_bw()
 
-p
+pp
 
 ```
 

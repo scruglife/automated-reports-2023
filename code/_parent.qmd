@@ -5,7 +5,8 @@ csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/ap
 bibliography: "https://raw.githubusercontent.com/afsc-gap-products/citations/main/cite/bibliography.bib"
 link-citations: true
 format: 
-  html: default
+  html: 
+      theme: cosmo
   docx:
     reference-doc: "code/styles_reference.docx" 
   pdf: 
@@ -46,29 +47,35 @@ for (p in PKG) { # this loops through each package,
 ```
 
 ```{r load-data}
-
-report_year <- 2022
-
 # Download data ----------------------------------------------------------------
+
 # pull data from FOSS API for AFSC bottom trawl survey data. 
 api_link <- "https://apps-st.fisheries.noaa.gov/ods/foss/afsc_groundfish_survey/"
 
 # Select data from the report_year, with common names including "snailfish", in the EBS
-res <- httr::GET(url = paste0(api_link, '?q={"year":"', report_year,
-                              '","common_name":{"$like":"%25snailfish%25"},"srvy":"EBS"}'))
+res <- httr::GET(url = paste0(api_link, '?q={"year":"', {{params$report_year}},
+                              '","common_name":{"$like":"%25snailfish%25"},"srvy":{"$like":"%25BS%25"}}?limit=100'))
 # subset to the actual data output from the above function
 dat0 <- jsonlite::fromJSON(base::rawToChar(res$content))$items
 
-# transform data for mapping
+# Transform species data for mapping
 dat00 <- sf::st_as_sf(dat0, coords = c("longitude_dd","latitude_dd"))
 dat00 <- sf::st_set_crs(dat00, "+proj=longlat +datum=WGS84") 
 dat00 <- sf::st_transform(x = dat00, crs = "EPSG:3338")
 
-# What species were caught this year?
-spp <- unique(dat0$common_name)
+# Shapefiles for mapping
+reg_dat <- akgfmaps::get_base_layers(select.region = 'ebs',
+                                     set.crs = "EPSG:3338")
 ```
 
-{{< include _child_intro.qmd >}}
+<!-- This should work the same as the next chunk: -->
+<!-- {{< include _child_intro.qmd >}} -->
+
+```{r child-doc}
+src <- knitr::knit_expand(file = here::here('code','_child_intro.qmd')) 
+```
+
+`r paste(knitr::knit(text = unlist(src)), collapse = '\n')`
 
 # Methods
 Quarto has support for some fancy accessories that are helpful for reports. For example, you can create flowcharts using tools like `{mermaid}`.
