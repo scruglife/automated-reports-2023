@@ -11,9 +11,9 @@ from: markdown+emoji
 date: "September 26, 2023"
 ---
 
-## Quarto
+## Quarto and Markdown
 
-Quarto enables you to weave together content and executable code into a finished presentation.
+Quarto and Markdown enable you to weave together content and executable code into a finished product.
 
 These slides were also made with [Quarto](https://quarto.org/docs/presentations/).
 
