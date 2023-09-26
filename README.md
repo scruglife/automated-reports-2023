@@ -13,10 +13,6 @@
 
 > September 26, 2023
 
-> This code is always in development. Find code used for final products
-> of this code in
-> [releases](paste0(https://github.com/scruglife/automated-reports-2023,%20%22/releases%22)).
-
 ## Purpose
 
 These materials were developed to serve as a simple template example for
@@ -27,14 +23,14 @@ Users Group (SCRUG) by Emily Markowitz and Megsie Siple.
 ### Example: snailfish one-pager
 
 The code is
-[here](https://github.com/EmilyMarkowitz-NOAA/automated-reporting-ex/tree/main/code4).
-Run this code from the `run4.r` script.
+[here](https://github.com/scruglife/automated-reports-2023/tree/main).
+You can compile the document from within `parent.qmd` (click “Render”)
+or using the `run.R` script.
 
 Here we will start to work with some real data and annual reporting on
 snailfish catches in the eastern Bering Sea bottom trawl survey. Data is
 publicly available from the Fisheries One Stop Shop (FOSS, NOAA
-Fisheries Alaska Fisheries Science Center (2023)) and in this [GitHub
-Repo](https://github.com/afsc-gap-products/gap_public_data).
+Fisheries Alaska Fisheries Science Center (2023)).
 
 ## Additional Resources
 
@@ -50,7 +46,7 @@ Repo](https://github.com/afsc-gap-products/gap_public_data).
     nmfs-opensci](https://github.com/orgs/nmfs-opensci/repositories?q=quarto&type=all&language=&sort=)
   - Her [youtube
     channel](https://www.youtube.com/@eeholmes-datascience4849) is
-    teaming with awesome examples!
+    teeming with awesome examples.
 
 ## NOAA README
 
