@@ -6,7 +6,7 @@ bibliography: "https://raw.githubusercontent.com/afsc-gap-products/citations/mai
 link-citations: true
 format: 
   html: 
-      theme: cosmo
+    theme: cosmo
   docx:
     reference-doc: "code/styles_reference.docx" 
   pdf: 
@@ -24,7 +24,7 @@ execute:
   message: false
   error: false
 params: 
-  report_year: 2000
+  report_year: 2022
 ---
 
 ```{r load-packages}
