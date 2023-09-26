@@ -4,7 +4,7 @@
 
 # Run report! ------------------------------------------------------------------
 
-for (report_year in c(2010, 2021, 2022)) { # A few years to cycle through
+for (report_year in c(2021, 2022)) { # A few years to cycle through
   quarto::quarto_render(  # render the quarto document
     input = here::here("code", "parent.qmd"), 
     output_format = "html", 
