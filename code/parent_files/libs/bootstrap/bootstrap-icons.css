@@ -1,14 +1,8 @@
 @font-face {
-<<<<<<< HEAD
-  font-family: "bootstrap-icons";
-  src: 
-url("./bootstrap-icons.woff?524846017b983fc8ded9325d94ed40f3") format("woff");
-=======
   font-display: block;
   font-family: "bootstrap-icons";
   src: 
 url("./bootstrap-icons.woff?2ab2cbbe07fcebb53bdaa7313bb290f2") format("woff");
->>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338
 }
 
 .bi::before,
@@ -1709,8 +1703,6 @@ url("./bootstrap-icons.woff?2ab2cbbe07fcebb53bdaa7313bb290f2") format("woff");
 .bi-filetype-json::before { content: "\f791"; }
 .bi-filetype-pptx::before { content: "\f792"; }
 .bi-filetype-xlsx::before { content: "\f793"; }
-<<<<<<< HEAD
-=======
 .bi-1-circle-1::before { content: "\f794"; }
 .bi-1-circle-fill-1::before { content: "\f795"; }
 .bi-1-circle-fill::before { content: "\f796"; }
@@ -2024,4 +2016,3 @@ url("./bootstrap-icons.woff?2ab2cbbe07fcebb53bdaa7313bb290f2") format("woff");
 .bi-sina-weibo::before { content: "\f8ca"; }
 .bi-tencent-qq::before { content: "\f8cb"; }
 .bi-wikipedia::before { content: "\f8cc"; }
->>>>>>> 92c14271ec431f59f5c5dd4e2a24b86d3d03c338

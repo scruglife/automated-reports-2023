@@ -72,7 +72,7 @@ reg_dat <- akgfmaps::get_base_layers(select.region = 'ebs',
 <!-- {{< include _child_intro.qmd >}} -->
 
 ```{r child-doc}
-src <- knitr::knit_expand(file = here::here('code','_child_intro.qmd')) 
+src <- knitr::knit_expand(file = here::here('code','child_intro.qmd')) 
 ```
 
 `r paste(knitr::knit(text = unlist(src)), collapse = '\n')`
